@@ -12,11 +12,11 @@ public class DefaultEnemyGenerator implements EnemyGenerator {
     private final int lastEnemyNum = 5;
 
     private IntObject[] enemies= {
-            new IntObject(1L, "야생의 적 1", 50, 1, 5, 10, 25, 30),
-            new IntObject(2L, "야생의 적 2", 50, 3, 10, 30, 40, 40),
-            new IntObject(3L, "중간보스", 500, 5, 20, 50, 50, 50),
-            new IntObject(4L, "야생의 적 3", 300, 5, 15, 30, 40, 40),
-            new IntObject(5L, "최종보스", 1000, 10, 30, 100, 70, 50),
+            new IntObject(1L, "야생의 적 1", 100, 1, 5, 10, 20, 40),
+            new IntObject(2L, "야생의 적 2", 200, 3, 10, 30, 30, 50),
+            new IntObject(3L, "중간보스", 500, 5, 20, 50, 40, 70),
+            new IntObject(4L, "야생의 적 3", 300, 5, 15, 40, 30, 50),
+            new IntObject(5L, "최종보스", 1000, 10, 30, 70, 50, 70),
     };
 
     public DefaultEnemyGenerator(IntObjectRepository intObjectRepository) {

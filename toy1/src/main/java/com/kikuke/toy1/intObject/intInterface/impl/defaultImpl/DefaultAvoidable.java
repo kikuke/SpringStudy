@@ -4,7 +4,6 @@ import com.kikuke.toy1.intObject.IntObject;
 import com.kikuke.toy1.intObject.intInterface.Avoidable;
 import org.springframework.stereotype.Component;
 
-@Component
 public class DefaultAvoidable implements Avoidable {
     @Override
     public boolean avoid(IntObject attackObj, IntObject avoidObj) {

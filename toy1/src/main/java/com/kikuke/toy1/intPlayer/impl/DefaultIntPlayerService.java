@@ -13,13 +13,13 @@ public class DefaultIntPlayerService implements IntPlayerService {
 
         switch (intPlayer.getIntClass()) {
             case Archer:
-                intObject = new IntObject(id, name, 30, 10, 20, 70, 70, 70);
+                intObject = new IntObject(id, name, 70, 10, 30, 90, 70, 90);
                 break;
             case Wizard:
-                intObject = new IntObject(id, name, 20, 5, 50, 10, 10, 30);
+                intObject = new IntObject(id, name, 10, 3, 100, 70, 50, 70);
                 break;
             case Warrior:
-                intObject = new IntObject(id, name, 100, 30, 15, 30, 20, 50);
+                intObject = new IntObject(id, name, 300, 50, 70, 30, 30, 95);
                 break;
         }
         if(intObject == null)

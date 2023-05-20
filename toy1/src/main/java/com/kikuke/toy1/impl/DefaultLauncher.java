@@ -43,15 +43,16 @@ public class DefaultLauncher implements Launcher {
 		while(isPlay) {
 			player = intPlayerRepository.findById(0L);
 			player.getIntObject().setHp(maxHp);
-			System.out.println("캐릭터 로딩 완료!\n");
+			System.out.println("###캐릭터 로딩 완료!###\n");
 			System.out.println(player);
+			System.out.println("###게임을 시작합니다!###\n");
 
 			idCnt = staging((int)idCnt, player.getIntObject());
 
-			System.out.println("캐릭터 사망!\n");
+			System.out.println("###캐릭터 사망!###\n");
 			player.setIntObject(null);
 			player = null;
-			System.out.println("부활하시려면 true를 아니라면 false를 입력해주세요.\n");
+			System.out.println("###부활하시려면 true를 아니라면 false를 입력해주세요.###\n");
 			isPlay = scanner.nextBoolean();
 		}
 	}
@@ -61,10 +62,10 @@ public class DefaultLauncher implements Launcher {
 
 		while (!intObjectService.isDead(player)) {
 			if(stageNum > enemyGenerator.getLastEnemyNum()) {
-				System.out.println("게임을 클리어했습니다!");
+				System.out.println("###게임을 클리어했습니다!###");
 				return stageNum;
 			}
-			System.out.printf("Stage %d!\n", stageNum);
+			System.out.printf("###Stage %d!###\n", stageNum);
 			enemy = enemyGenerator.generateEnemyById((long)stageNum);
 
 			actionRoutine(player, enemy);
@@ -91,34 +92,41 @@ public class DefaultLauncher implements Launcher {
 			System.out.println("현재 Enemy Status\n");
 			System.out.println(enemy+"\n");
 			System.out.println("\n#################\n");
+
+			try {
+				Thread.sleep(2000);
+			} catch (Exception e) {}
 		}
 	}
 
 	private void action(IntObject attack, IntObject defence) throws Exception {
+		System.out.println("\n#################\n");
+
+		System.out.printf("%s의 공격\n", attack.getName());
+
 		float damage = intObjectService.attack(attack);
 		boolean isAvoid = intObjectService.avoid(attack, defence);
 		float defDam = intObjectService.deffence(attack, defence);
 		float finalDam;
 
-		System.out.println("\n#################\n");
-		System.out.printf("%s의 %.1f 피해의 공격!\n", attack.getName(), damage);
-		Thread.sleep(1000);
-		if(isAvoid) {
-			System.out.println("회피 성공!");
+		System.out.printf("%.1f 피해의 공격!\n", damage);
+		Thread.sleep(700);
+		if(isAvoid || damage <= 0) {
+			System.out.println("회피!");
+			Thread.sleep(700);
 			return;
 		}
 
-		Thread.sleep(1000);
-		System.out.printf("%s이(가) %.1f 만큼의 방어", defence.getName(), defDam);
+		System.out.printf("%s이(가) %.1f 만큼의 방어\n", defence.getName(), defDam);
+		Thread.sleep(700);
 		finalDam = damage - defDam;
-		Thread.sleep(1000);
-		System.out.printf("%s의 최종 피해: %.1f", defence.getName(), finalDam);
+		System.out.printf("%s의 최종 피해: %.1f\n", defence.getName(), finalDam);
 		System.out.println("\n#################\n");
+		Thread.sleep(700);
 
 		if(finalDam > 0) {
 			defence.setHp(defence.getHp() - finalDam);
 		}
-		Thread.sleep(1000);
 	}
 
 	private IntPlayer createPlayer(Long id) {
