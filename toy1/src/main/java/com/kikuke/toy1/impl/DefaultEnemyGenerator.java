@@ -3,6 +3,7 @@ package com.kikuke.toy1.impl;
 import com.kikuke.toy1.EnemyGenerator;
 import com.kikuke.toy1.intObject.IntObject;
 import com.kikuke.toy1.intObject.IntObjectRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,6 +20,7 @@ public class DefaultEnemyGenerator implements EnemyGenerator {
             new IntObject(5L, "최종보스", 1000, 10, 30, 70, 50, 70),
     };
 
+    @Autowired
     public DefaultEnemyGenerator(IntObjectRepository intObjectRepository) {
         this.intObjectRepository = intObjectRepository;
     }

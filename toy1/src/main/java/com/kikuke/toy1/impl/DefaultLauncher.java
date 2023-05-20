@@ -8,6 +8,7 @@ import com.kikuke.toy1.intPlayer.IntClass;
 import com.kikuke.toy1.intPlayer.IntPlayer;
 import com.kikuke.toy1.intPlayer.IntPlayerRepository;
 import com.kikuke.toy1.intPlayer.IntPlayerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -19,6 +20,7 @@ public class DefaultLauncher implements Launcher {
 	private final IntPlayerRepository intPlayerRepository;
 	private final EnemyGenerator enemyGenerator;
 
+	@Autowired
 	public DefaultLauncher(IntPlayerService intPlayerService, IntObjectService intObjectService, IntPlayerRepository intPlayerRepository, EnemyGenerator enemyGenerator) {
 		this.intPlayerService = intPlayerService;
 		this.intObjectService = intObjectService;
