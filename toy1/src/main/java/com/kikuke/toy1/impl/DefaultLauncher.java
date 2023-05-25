@@ -40,18 +40,23 @@ public class DefaultLauncher implements Launcher {
 			return;
 		maxHp = player.getIntObject().getHp();
 
+		//Todo: playerService로직에 넣기
 		intPlayerRepository.save(player);
 		enemyGenerator.InitGenerator();
 		while(isPlay) {
+			//Todo: Repository 호출이 아닌 서비스로 만들어서 가져오기
+			//	아래 두개 묶어서 restartPlayer()메서드로 전환하기
 			player = intPlayerRepository.findById(0L);
 			player.getIntObject().setHp(maxHp);
 			System.out.println("###캐릭터 로딩 완료!###\n");
 			System.out.println(player);
 			System.out.println("###게임을 시작합니다!###\n");
 
+			//Todo: 새로운 서비스를 만드는게 나음.
 			idCnt = staging((int)idCnt, player.getIntObject());
 
 			System.out.println("###캐릭터 사망!###\n");
+			//Todo: 아래 두개 메서드를 deadPlayer()로 묶기
 			player.setIntObject(null);
 			player = null;
 			System.out.println("###부활하시려면 true를 아니라면 false를 입력해주세요.###\n");
